@@ -24,8 +24,13 @@ public class UserController {
 
 	@GetMapping
 	public List<User> findAll() {
-		List<User> usuarios = userRepository.findAllByAtivoTrue();
-		return usuarios;
+		if(userRepository.findAllByAtivoTrue() != null) {
+			List<User> usuarios = userRepository.findAllByAtivoTrue();
+			return usuarios;
+		}else {
+			return null;
+		}
+	
 	}
 
 	@GetMapping(value = "/{id}")
@@ -40,6 +45,12 @@ public class UserController {
 		User userInsert = userRepository.save(user);
 		userInsert.setAtivo(true);
 		return userInsert;
+	}
+	@DeleteMapping
+	public String deleteAll() {
+		userRepository.deleteAll();
+		
+		return "USUARIOS DELETADOS";
 	}
 
 	@DeleteMapping(value = "/{id}")
