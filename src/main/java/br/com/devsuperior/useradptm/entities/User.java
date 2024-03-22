@@ -17,7 +17,7 @@ public class User {
 	private Long id;
 	private String name;
 	private String email;
-	private boolean ativo;
+	private boolean ativo=true;
 	
 	@ManyToOne
 	@JoinColumn(name="department_id")
@@ -61,7 +61,25 @@ public class User {
 
 	public void excluir() {
 		// TODO Auto-generated method stub
-		ativo=false;
+		setAtivo(false);
+	}
+
+	public void alterar(boolean ativo, String name, String email, Department department) {
+		// TODO Auto-generated method stub
+		ativo = true;
+		name = this.name;
+		email = this.email;
+		department = this.department;
+		
+		
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	
